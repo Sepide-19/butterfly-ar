@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Butterfly AR</title>
 
-  <!-- model-viewer -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
   <style>
@@ -74,18 +73,15 @@
 </head>
 
 <body>
-
-  <!-- 🦋 نمایش مدل -->
   <section class="viewer-section">
     <div class="butterfly-wrap">
       <model-viewer src="animated_butterfly.glb" ios-src="animated_butterfly.usdz" ar
-        ar-modes="webxr scene-viewer quick-look" camera-controls autoplay animation-name="*" auto-rotate
-        auto-rotate-delay="0" rotation-per-second="20deg" scale="0.5 0.5 0.5" shadow-intensity="1" exposure="1">
+        ar-modes="scene-viewer quick-look webxr" camera-controls autoplay auto-rotate auto-rotate-delay="0"
+        rotation-per-second="20deg" shadow-intensity="1" exposure="1">
       </model-viewer>
     </div>
   </section>
 
-  <!-- 📝 متن زیر -->
   <section class="info">
     <h1>Butterfly</h1>
     <p>
@@ -93,12 +89,9 @@
       life cycle. They undergo complete metamorphosis, transforming from egg to
       caterpillar, then to chrysalis, and finally emerging as winged adults.
       Beyond their beauty, butterflies play an important role in pollination and
-      serve as indicators of environmental health. This digital butterfly
-      reimagines that living form as an interactive three-dimensional experience
-      in augmented reality.
+      serve as indicators of environmental health.
     </p>
   </section>
-
 </body>
 
 </html>
