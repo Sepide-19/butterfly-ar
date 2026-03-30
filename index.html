@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Butterfly WebAR Test</title>
+  <title>Butterfly WebAR</title>
 
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
@@ -62,7 +62,9 @@
 <body>
   <div class="overlay-text">
     <h2>Butterfly</h2>
-    Test version with Hiro marker.
+    Butterflies are delicate insects known for their vivid wings and remarkable
+    life cycle. They undergo complete metamorphosis, changing from egg to
+    caterpillar, then chrysalis, and finally emerging as winged adults.
   </div>
 
   <a-scene
@@ -75,7 +77,7 @@
       <a-asset-item id="butterflyModel" src="animated_butterfly.glb"></a-asset-item>
     </a-assets>
 
-    <a-marker preset="hiro">
+    <a-marker type="pattern" url="pattern-marker.patt">
       <a-entity
         gltf-model="#butterflyModel"
         animation-mixer
@@ -97,7 +99,6 @@
   </a-scene>
 </body>
 </html>
-    </p>
   </section>
 </body>
 
