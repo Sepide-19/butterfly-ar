@@ -60,6 +60,7 @@
 </head>
 
 <body>
+  <!-- متن پایین صفحه -->
   <div class="overlay-text">
     <h2>Butterfly</h2>
     Butterflies are delicate insects known for their vivid wings and remarkable
@@ -67,6 +68,7 @@
     caterpillar, then chrysalis, and finally emerging as winged adults.
   </div>
 
+  <!-- صحنه AR -->
   <a-scene
     embedded
     vr-mode-ui="enabled: false"
@@ -77,7 +79,10 @@
       <a-asset-item id="butterflyModel" src="animated_butterfly.glb"></a-asset-item>
     </a-assets>
 
+    <!-- marker -->
     <a-marker type="pattern" url="pattern-marker.patt">
+
+      <!-- مدل پروانه -->
       <a-entity
         gltf-model="#butterflyModel"
         animation-mixer
@@ -86,16 +91,10 @@
         rotation="0 180 0">
       </a-entity>
 
-      <a-text
-        value="Butterfly"
-        position="0 0.55 0"
-        align="center"
-        color="#ffffff"
-        width="2.2">
-      </a-text>
     </a-marker>
 
     <a-entity camera></a-entity>
   </a-scene>
+
 </body>
 </html>
