@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fa">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Butterfly AR</title>
+
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #f5f1ea;
+      color: #2b2b2b;
+    }
+
+    .viewer-section {
+      width: 100%;
+      height: 62vh;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .butterfly-wrap {
+      width: 320px;
+      height: 320px;
+      animation: flySide 7s ease-in-out infinite alternate;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: transparent;
+    }
+
+    .info {
+      padding: 28px 20px 36px;
+      text-align: center;
+    }
+
+    .info h1 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .info p {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    @keyframes flySide {
+      0% {
+        transform: translateX(-90px) translateY(8px);
+      }
+
+      50% {
+        transform: translateX(0px) translateY(-6px);
+      }
+
+      100% {
+        transform: translateX(90px) translateY(8px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="viewer-section">
+    <div class="butterfly-wrap">
+      <model-viewer src="animated_butterfly.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls autoplay
+        auto-rotate auto-rotate-delay="0" rotation-per-second="18deg" scale="0.55 0.55 0.55" shadow-intensity="1"
+        exposure="1">
+      </model-viewer>
+    </div>
+  </section>
+
+  <section class="info">
+    <h1>Butterfly</h1>
+    <p>
+      Butterflies are insects known for their delicate wings, light bodies, and complete metamorphosis.
+      They begin as eggs, develop into caterpillars, form a chrysalis, and finally emerge as winged adults.
+      Beyond their visual beauty, butterflies are important pollinators and are often seen as indicators of
+      environmental health.
+      This digital butterfly reimagines that fragile natural form as an interactive three-dimensional object.
+    </p>
+  </section>
+
+</body>
+
+</html>
