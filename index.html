@@ -1,95 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa">
-
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Butterfly AR</title>
+  <title>Butterfly WebAR Test</title>
 
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.8/aframe/build/aframe-ar.js"></script>
+
+  <script>
+    AFRAME.registerComponent('float-around', {
+      schema: {
+        amplitudeX: { default: 0.18 },
+        amplitudeY: { default: 0.05 },
+        speed: { default: 1.4 },
+        baseX: { default: 0 },
+        baseY: { default: 0.25 },
+        baseZ: { default: 0 }
+      },
+      tick: function (time) {
+        const t = time / 1000;
+        const x = this.data.baseX + Math.sin(t * this.data.speed) * this.data.amplitudeX;
+        const y = this.data.baseY + Math.cos(t * this.data.speed * 1.5) * this.data.amplitudeY;
+        this.el.object3D.position.set(x, y, this.data.baseZ);
+      }
+    });
+  </script>
 
   <style>
     body {
       margin: 0;
-      font-family: Georgia, serif;
-      background: #f5f1ea;
-      color: #2b2b2b;
-    }
-
-    .viewer-section {
-      width: 100%;
-      height: 65vh;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      font-family: Georgia, serif;
     }
 
-    .butterfly-wrap {
-      width: 300px;
-      height: 300px;
-      animation: fly 6s ease-in-out infinite alternate;
-    }
-
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      display: block;
-      background: transparent;
-    }
-
-    .info {
-      padding: 28px 20px;
+    .overlay-text {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(90vw, 760px);
+      background: rgba(255, 255, 255, 0.9);
+      color: #222;
+      padding: 14px 18px;
+      border-radius: 12px;
       text-align: center;
+      line-height: 1.7;
+      font-size: 16px;
+      z-index: 10;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
     }
 
-    .info h1 {
-      margin-bottom: 12px;
-      font-size: 28px;
-    }
-
-    .info p {
-      max-width: 850px;
-      margin: 0 auto;
-      font-size: 18px;
-      line-height: 1.9;
-    }
-
-    @keyframes fly {
-      0% {
-        transform: translateX(-80px) translateY(10px);
-      }
-
-      50% {
-        transform: translateX(0px) translateY(-10px);
-      }
-
-      100% {
-        transform: translateX(80px) translateY(10px);
-      }
+    .overlay-text h2 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
     }
   </style>
 </head>
 
 <body>
-  <section class="viewer-section">
-    <div class="butterfly-wrap">
-      <model-viewer src="animated_butterfly.glb" ios-src="animated_butterfly.usdz" ar
-        ar-modes="scene-viewer quick-look webxr" camera-controls autoplay auto-rotate auto-rotate-delay="0"
-        rotation-per-second="20deg" shadow-intensity="1" exposure="1">
-      </model-viewer>
-    </div>
-  </section>
+  <div class="overlay-text">
+    <h2>Butterfly</h2>
+    Test version with Hiro marker.
+  </div>
 
-  <section class="info">
-    <h1>Butterfly</h1>
-    <p>
-      Butterflies are delicate insects known for their vibrant wings and remarkable
-      life cycle. They undergo complete metamorphosis, transforming from egg to
-      caterpillar, then to chrysalis, and finally emerging as winged adults.
-      Beyond their beauty, butterflies play an important role in pollination and
-      serve as indicators of environmental health.
+  <a-scene
+    embedded
+    vr-mode-ui="enabled: false"
+    renderer="logarithmicDepthBuffer: true; colorManagement: true;"
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+  >
+    <a-assets>
+      <a-asset-item id="butterflyModel" src="animated_butterfly.glb"></a-asset-item>
+    </a-assets>
+
+    <a-marker preset="hiro">
+      <a-entity
+        gltf-model="#butterflyModel"
+        animation-mixer
+        float-around="amplitudeX: 0.18; amplitudeY: 0.04; speed: 1.3; baseX: 0; baseY: 0.25; baseZ: 0"
+        scale="0.25 0.25 0.25"
+        rotation="0 180 0">
+      </a-entity>
+
+      <a-text
+        value="Butterfly"
+        position="0 0.85 0"
+        align="center"
+        color="#ffffff"
+        width="2.8">
+      </a-text>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
     </p>
   </section>
 </body>
